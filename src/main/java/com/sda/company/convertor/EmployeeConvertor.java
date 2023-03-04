@@ -3,6 +3,7 @@ package com.sda.company.convertor;
 import com.sda.company.dto.EmployeeRequestDTO;
 import com.sda.company.dto.EmployeeResponseDTO;
 import com.sda.company.model.EmployeeEntity;
+import com.sda.company.model.JobTitle;
 
 public class EmployeeConvertor {
 
@@ -13,7 +14,7 @@ public class EmployeeConvertor {
                 employeeRequestDTO.getCNP(),
                 employeeRequestDTO.getEmail(),
                 employeeRequestDTO.getAddress(),
-                employeeRequestDTO.getJobTitle(),
+                String.valueOf(employeeRequestDTO.getJobTitle()),
                 employeeRequestDTO.getSalary()
         );
     }
@@ -26,7 +27,7 @@ public class EmployeeConvertor {
                 employeeEntity.getCNP(),
                 employeeEntity.getEmail(),
                 employeeEntity.getAddress(),
-                employeeEntity.getJobTitle(),
+                JobTitle.valueOf(employeeEntity.getJobTitle()),
                 employeeEntity.getSalary()
         );
     }

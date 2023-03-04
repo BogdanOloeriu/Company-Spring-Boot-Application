@@ -9,7 +9,7 @@ public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
+    private java.lang.String name;
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -18,14 +18,14 @@ public class EmployeeEntity {
     private String address;
 
     @Column(name = "job_title")
-    private JobTitle jobTitle;
+    private String jobTitle;
 
     private Long salary;
 
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity( String name, String phoneNumber, Long CNP, String email, String address, JobTitle jobTitle, Long salary) {
+    public EmployeeEntity(String name, String phoneNumber, Long CNP, String email, String address, String jobTitle, Long salary) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.CNP = CNP;
@@ -43,7 +43,7 @@ public class EmployeeEntity {
         this.id = id;
     }
 
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
@@ -67,7 +67,7 @@ public class EmployeeEntity {
         this.CNP = CNP;
     }
 
-    public String getEmail() {
+    public java.lang.String getEmail() {
         return email;
     }
 
@@ -83,11 +83,11 @@ public class EmployeeEntity {
         this.address = address;
     }
 
-    public JobTitle getJobTitle() {
+    public String getJobTitle() {
         return jobTitle;
     }
 
-    public void setJobTitle(JobTitle jobTitle) {
+    public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
 

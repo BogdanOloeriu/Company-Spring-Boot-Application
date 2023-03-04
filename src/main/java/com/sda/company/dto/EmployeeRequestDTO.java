@@ -8,21 +8,21 @@ import jakarta.validation.constraints.NotNull;
 public class EmployeeRequestDTO {
 
     @NotNull
-    private String name;
+    private java.lang.String name;
 
-    private String phoneNumber;
+    private java.lang.String phoneNumber;
     @NotNull
     private Long CNP;
     @Email
-    private String email;
-    private String address;
+    private java.lang.String email;
+    private java.lang.String address;
 
     @NotNull
     private JobTitle jobTitle;
 
     private Long salary;
 
-    public EmployeeRequestDTO(String name, String phoneNumber, Long CNP, String email, String address, JobTitle jobTitle, Long salary) {
+    public EmployeeRequestDTO(java.lang.String name, java.lang.String phoneNumber, Long CNP, java.lang.String email, java.lang.String address, JobTitle jobTitle, Long salary) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.CNP = CNP;
@@ -32,19 +32,19 @@ public class EmployeeRequestDTO {
         this.salary = salary;
     }
 
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(java.lang.String name) {
         this.name = name;
     }
 
-    public String getPhoneNumber() {
+    public java.lang.String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(java.lang.String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -56,19 +56,19 @@ public class EmployeeRequestDTO {
         this.CNP = CNP;
     }
 
-    public String getEmail() {
+    public java.lang.String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(java.lang.String email) {
         this.email = email;
     }
 
-    public String getAddress() {
+    public java.lang.String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(java.lang.String address) {
         this.address = address;
     }
 
