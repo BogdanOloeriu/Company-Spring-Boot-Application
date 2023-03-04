@@ -13,6 +13,7 @@ public class EmployeeEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(unique = true)
     private Long CNP;
     private String email;
     private String address;

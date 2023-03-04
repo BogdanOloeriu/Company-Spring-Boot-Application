@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/v1/company")
-//@ControllerAdvice  //ca sa ne apara mesajul nostru de eroare, dar trebuie sa mai facem noi ceva ca sa se vada si la client mesajul
+@ControllerAdvice  //ca sa ne apara mesajul nostru de eroare, dar trebuie sa mai facem noi ceva ca sa se vada si la client mesajul
 public class CompanyController {
 
     private final CompanyService companyService;

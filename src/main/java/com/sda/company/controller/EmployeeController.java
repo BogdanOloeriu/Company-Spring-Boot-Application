@@ -3,6 +3,7 @@ package com.sda.company.controller;
 import com.sda.company.dto.EmployeeRequestDTO;
 import com.sda.company.dto.EmployeeResponseDTO;
 import com.sda.company.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EmployeeResponseDTO> create(@RequestBody EmployeeRequestDTO employeeRequestDTO){
+    public ResponseEntity<EmployeeResponseDTO> create(@RequestBody @Valid EmployeeRequestDTO employeeRequestDTO){
         EmployeeResponseDTO employeeResponseDTO = employeeService.createEmployee(employeeRequestDTO);
         return ResponseEntity.ok(employeeResponseDTO);
     }
