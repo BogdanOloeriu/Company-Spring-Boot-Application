@@ -3,18 +3,26 @@ package com.sda.company.service.impl;
 import com.sda.company.convertor.CompanyConvertor;
 import com.sda.company.dto.CompanyCreateDTO;
 import com.sda.company.dto.CompanyInfoDTO;
+import com.sda.company.exception.CompanyException;
 import com.sda.company.model.CompanyEntity;
 import com.sda.company.repository.CompanyRepository;
 import com.sda.company.service.CompanyService;
+import com.sda.company.utils.CustomFakerCompany;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final CustomFakerCompany customFakerCompany;
 
-    public CompanyServiceImpl(CompanyRepository companyRepository) {
+    public CompanyServiceImpl(CompanyRepository companyRepository, CustomFakerCompany customFakerCompany) {
         this.companyRepository = companyRepository;
+        this.customFakerCompany = Objects.requireNonNull(customFakerCompany);
     }
 
     @Override
@@ -26,5 +34,24 @@ public class CompanyServiceImpl implements CompanyService {
 
         return companyInfoDTO;
 
+    }
+
+    @Override
+    public CompanyInfoDTO getCompanyByName(String name) {
+
+       //imi trebuie un findByName
+        //o vom face noi
+        CompanyEntity companyEntity = companyRepository
+                .findByName(name)
+                .orElseThrow(() -> new CompanyException("Company not found")); //daca nu l gaseste o sa arunce o exceptie
+
+        return CompanyConvertor.convertToCompanyInfoDTO(companyEntity);
+
+    }
+
+    @Override
+    public void generateCompanies() {
+        List<CompanyEntity> companyEntities = customFakerCompany.generateDummyCompany();
+        companyRepository.saveAll(companyEntities);
     }
 }
