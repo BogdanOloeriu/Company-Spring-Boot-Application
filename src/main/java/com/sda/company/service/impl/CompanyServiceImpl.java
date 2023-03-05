@@ -3,12 +3,18 @@ package com.sda.company.service.impl;
 import com.sda.company.convertor.CompanyConvertor;
 import com.sda.company.dto.CompanyCreateDTO;
 import com.sda.company.dto.CompanyInfoDTO;
+import com.sda.company.dto.CompanyLiteDTO;
 import com.sda.company.exception.CompanyException;
 import com.sda.company.model.CompanyEntity;
 import com.sda.company.repository.CompanyRepository;
 import com.sda.company.service.CompanyService;
 import com.sda.company.utils.CustomFakerCompany;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +59,24 @@ public class CompanyServiceImpl implements CompanyService {
     public void generateCompanies() {
         List<CompanyEntity> companyEntities = customFakerCompany.generateDummyCompany();
         companyRepository.saveAll(companyEntities);
+    }
+
+    @Override
+    public List<CompanyLiteDTO> getCompanies(Integer pageNumber, Integer pageSize, String sortBy) {
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
+        List<CompanyLiteDTO> companyLiteDTOS = new ArrayList<>();
+
+        //List<CompanyEntity> companyEntities =  new ArrayList<>();
+
+        companyRepository.findAll(pageable).forEach(companyEntity -> {
+            companyLiteDTOS.add(CompanyConvertor.convertToCompanyLiteDTO(companyEntity));
+        });
+
+//        List<CompanyLiteDTO> companyLiteDTOS = new ArrayList<>();
+//
+//        companyEntities.forEach(company ->  companyLiteDTOS.add(CompanyConvertor.convertToCompanyLiteDTO(company)));
+
+        return companyLiteDTOS;
     }
 }

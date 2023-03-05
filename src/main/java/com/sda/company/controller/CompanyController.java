@@ -2,6 +2,7 @@ package com.sda.company.controller;
 
 import com.sda.company.dto.CompanyCreateDTO;
 import com.sda.company.dto.CompanyInfoDTO;
+import com.sda.company.dto.CompanyLiteDTO;
 import com.sda.company.model.CompanyEntity;
 import com.sda.company.service.CompanyService;
 import com.sda.company.utils.CustomFakerCompany;
@@ -17,7 +18,8 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "/api/v1/company")
-@ControllerAdvice  //ca sa ne apara mesajul nostru de eroare, dar trebuie sa mai facem noi ceva ca sa se vada si la client mesajul
+@ControllerAdvice
+//ca sa ne apara mesajul nostru de eroare, dar trebuie sa mai facem noi ceva ca sa se vada si la client mesajul
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -29,14 +31,14 @@ public class CompanyController {
     }
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CompanyInfoDTO> create(@RequestBody @Valid CompanyCreateDTO companyCreateDTO){
+    public ResponseEntity<CompanyInfoDTO> create(@RequestBody @Valid CompanyCreateDTO companyCreateDTO) {
         //TREBUIE SI VALID CA SA IA VALIDARILE DIN DTO
-        CompanyInfoDTO companyInfoDTO =  companyService.createCompany(companyCreateDTO);
+        CompanyInfoDTO companyInfoDTO = companyService.createCompany(companyCreateDTO);
         return ResponseEntity.ok(companyInfoDTO);
     }
 
     @GetMapping("/findCompanyByName") //vom folosi requestParam
-    public ResponseEntity<CompanyInfoDTO> getCompanyByName(@RequestParam String name){
+    public ResponseEntity<CompanyInfoDTO> getCompanyByName(@RequestParam String name) {
 
         CompanyInfoDTO companyInfoDTO = companyService.getCompanyByName(name);
 
@@ -48,11 +50,18 @@ public class CompanyController {
     }
 
     @GetMapping("/generateFakerCompanies")
-    public ResponseEntity<String> generateCompanies(){
+    public ResponseEntity<String> generateCompanies() {
         companyService.generateCompanies();
         return ResponseEntity.ok("Companies generated!");
     }
 
+    @GetMapping("/findAllCompanies")
+    public ResponseEntity<List<CompanyLiteDTO>> getCompanies(@RequestParam(defaultValue = "0") Integer pageNumber,
+                                                             @RequestParam(defaultValue = "10") Integer pageSize,
+                                                             @RequestParam(defaultValue = "name") String sortBy) {
+        //folosim default ca in cazul in care nu pune userul,sa aiba aia byDefault;
+        return ResponseEntity.ok(companyService.getCompanies(pageNumber, pageSize, sortBy));
+    }
 
 
 }

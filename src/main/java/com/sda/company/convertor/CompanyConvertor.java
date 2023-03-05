@@ -2,7 +2,10 @@ package com.sda.company.convertor;
 
 import com.sda.company.dto.CompanyCreateDTO;
 import com.sda.company.dto.CompanyInfoDTO;
+import com.sda.company.dto.CompanyLiteDTO;
 import com.sda.company.model.CompanyEntity;
+
+import java.util.List;
 
 public class CompanyConvertor {
 
@@ -22,6 +25,13 @@ public class CompanyConvertor {
                 companyEntity.getRegistrationNumber(),
                 companyEntity.getEmail(),
                 companyEntity.getAddress(),
+                companyEntity.getPhoneNumber());
+    }
+
+    public static CompanyLiteDTO convertToCompanyLiteDTO(CompanyEntity companyEntity){
+        return new CompanyLiteDTO(
+                companyEntity.getName(),
+                companyEntity.getEmail(),
                 companyEntity.getPhoneNumber());
     }
 }
