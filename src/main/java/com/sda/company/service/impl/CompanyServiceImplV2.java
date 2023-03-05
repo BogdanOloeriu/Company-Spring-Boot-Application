@@ -14,18 +14,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Service("companyServiceVersion1")
-public class CompanyServiceImpl implements CompanyService {
+@Service("companyServiceVersion2")
+public class CompanyServiceImplV2 implements CompanyService {
 
     private final CompanyRepository companyRepository;
     private final CustomFakerCompany customFakerCompany;
 
-    public CompanyServiceImpl(CompanyRepository companyRepository, CustomFakerCompany customFakerCompany) {
+    public CompanyServiceImplV2(CompanyRepository companyRepository, CustomFakerCompany customFakerCompany) {
         this.companyRepository = companyRepository;
         this.customFakerCompany = Objects.requireNonNull(customFakerCompany);
     }
