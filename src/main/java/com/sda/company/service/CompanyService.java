@@ -16,4 +16,6 @@ public interface CompanyService {
      void generateCompanies();
 
      List<CompanyLiteDTO> getCompanies(Integer pageNumber, Integer pageSize, String sortBy);
+
+     List<CompanyLiteDTO> getAll();
 }

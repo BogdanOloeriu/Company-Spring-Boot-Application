@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>Company starting page</title>
+</head>
+<body>
+ <!--<p>test</p> -->
+<form th:action="@{/company}" th:object="${gdprForm}" method="post">
+  <label for="name">name</label>
+  <input type="text" id="name" name="name" autofocus="autofocus">
+  <br/>
+  <label for="gdprConsent">gdpr consent</label>
+  <input type="checkbox" id="gdprConsent" name="gdprConsent" autofocus="autofocus">
+  <br/>
+  <input type="submit" value="submit">
+</form>
+
+<p th:text="${errorMessage}"></p>
+</body>
+</html>

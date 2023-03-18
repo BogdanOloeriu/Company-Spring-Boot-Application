@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Company landing page</title>
+</head>
+<body>
+<p th:text="${hello} + ${userName}"></p> <!-- th:text - cum luam o valoare din model si sa o afisam pe pagina, intebare test -->
+<p th:text="${welcomeMessage}"></p>
+<a th:href="@{/start}">Go to app</a>
+</body>
+</html>

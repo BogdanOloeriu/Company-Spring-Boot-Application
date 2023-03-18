@@ -70,4 +70,15 @@ public class CompanyServiceImplV2 implements CompanyService {
         });
         return companyLiteDTOS;
     }
+
+    @Override
+    public List<CompanyLiteDTO> getAll() {
+
+        List<CompanyLiteDTO> companyLiteDTOS = new ArrayList<>();
+
+        companyRepository.findAll().forEach(companyEntity -> {
+            companyLiteDTOS.add(CompanyConvertor.convertToCompanyLiteDTO(companyEntity));
+        });
+        return companyLiteDTOS;
+    }
 }

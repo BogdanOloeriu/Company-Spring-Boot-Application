@@ -62,6 +62,14 @@ public class SecurityConfig {
             auth.requestMatchers("/api/v1/company/findCompanyByName").hasRole(ROL_USER);
             auth.requestMatchers("/api/v1/company/generateFakerCompanies").hasRole(ROL_POWER_USER);
             auth.requestMatchers("/api/v1/company/findAllCompanies").hasRole(ROL_POWER_USER);
+
+            // for thymeleaf
+            auth.requestMatchers("/").hasRole(ROL_USER);
+            auth.requestMatchers("/start").hasRole(ROL_USER);
+            auth.requestMatchers("/company").hasRole(ROL_USER);
+            auth.requestMatchers("/showAll").hasRole(ROL_USER);
+            auth.requestMatchers("/companyTable").hasRole(ROL_USER);
+
         }).httpBasic();
 
         httpSecurity
