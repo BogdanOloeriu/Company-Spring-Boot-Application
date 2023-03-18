@@ -85,11 +85,4 @@ public class SecurityConfig {
                 requestMatchers("/images/**", "/js/**", "/webjars/**");
     }
 
-
-
-
-
-
-
-
 }

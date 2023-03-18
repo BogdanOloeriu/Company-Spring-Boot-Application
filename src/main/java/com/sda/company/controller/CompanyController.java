@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,9 +39,10 @@ public class CompanyController {
     }
 
     @GetMapping("/findCompanyByName") //vom folosi requestParam
-    public ResponseEntity<CompanyInfoDTO> getCompanyByName(@RequestParam String name) {
+    public ResponseEntity<CompanyInfoDTO> getCompanyByName(@RequestParam("name") String name, Principal principal) {
 
         CompanyInfoDTO companyInfoDTO = companyService.getCompanyByName(name);
+        System.out.println("User that made the request: " + principal.getName());
 
         return ResponseEntity.ok(companyInfoDTO);
 
